@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Devenir Bénévolat</title>
+  <style>
+     body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-image: url('fond benevola.jpg.jpg'); /* Ton image ici */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: linear-gradient(to right, #0066cc, #00aaff);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      max-width: 700px;
+      background: white;
+      margin: 3rem auto;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 102, 204, 0.15);
+      animation: fadeInUp 1s ease forwards;
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      color: #0066cc;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      color: #004080;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1.2rem;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      transition: box-shadow 0.3s ease;
+      font-size: 16px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+      border-color: #0066cc;
+    }
+
+    button {
+      margin-top: 2rem;
+      background: linear-gradient(to right, #0066cc, #00aaff);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 15px rgba(0, 102, 204, 0.2);
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #004c99, #0090dd);
+      transform: scale(1.03);
+    }
+
+    .home-link {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+      color: #0066cc;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .home-link:hover {
+      text-decoration: underline;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Devenir Bénévolat
+  </header>
+
+  <div class="container">
+    <p><strong>Merci pour votre soutien. Entrez votre nom complet.</strong></p>
+
+    <form id="benevolatForm">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" required>
+
+      <label for="poste">Poste-nom</label>
+      <input type="text" id="poste" name="poste" required>
+
+      <label for="pronoms">Pronoms</label>
+      <input type="text" id="pronoms" name="pronoms" placeholder="Ex : il/lui, elle/elle, iel..." required>
+
+      <label for="sexe">Sexe</label>
+      <select id="sexe" name="sexe" required>
+        <option value="">-- Sélectionnez --</option>
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+        <option value="Autre">Autre</option>
+      </select>
+
+      <label for="naissance">Date de naissance</label>
+      <input type="date" id="naissance" name="naissance" required>
+
+      <label for="nationalite">Nationalité</label>
+      <input type="text" id="nationalite" name="nationalite" required>
+
+      <button type="submit">Soumettre</button>
+    </form>
+
+    <a class="home-link" href="index.html">Retour à l'accueil</a>
+  </div>
+
+  <script>
+    document.getElementById('benevolatForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Merci ! Vos informations ont été soumises avec succès.");
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>

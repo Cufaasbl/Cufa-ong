@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidéos - CUFA ONG</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-image: url('fond video.jpg.jpg'); /* Ton image ici */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8dc;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(135deg, #f4b400, #ffdd57);
+      color: #222;
+      padding: 40px 20px;
+      animation: fadeInDown 1s ease-in-out;
+      position: relative;
+    }
+
+    .lang-switch {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+    .lang-switch button {
+      background: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    .video-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .thumbnail {
+      text-align: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.05);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .video-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background-color: #f4b400;
+      color: #222;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .video-links a:hover {
+      background-color: #d89e00;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="lang-switch">
+      <button onclick="switchLang()">🌐 <span id="lang-label">EN</span></button>
+    </div>
+    <h1 id="title">Nos Vidéos - CUFA ONG</h1>
+    <p id="subtitle">Activités, interviews, conférences et plus</p>
+  </header>
+
+  <div class="video-container" id="video-section">
+    <h2 id="video-title">Exemple de Vidéo</h2>
+
+    <div class="thumbnail">
+      <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Miniature vidéo">
+    </div>
+
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Exemple vidéo" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-links">
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="watch">Voir sur YouTube</a>
+      <a href="media.html" id="back">🔙 Retour à Multimédia</a>
+    </div>
+  </div>
+
+  <script>
+    // Multi-language feature
+    const translations = {
+      fr: {
+        title: "Nos Vidéos - CUFA ONG",
+        subtitle: "Activités, interviews, conférences et plus",
+        videoTitle: "Exemple de Vidéo",
+        watch: "Voir sur YouTube",
+        back: "🔙 Retour à Multimédia"
+      },
+      en: {
+        title: "Our Videos - CUFA NGO",
+        subtitle: "Activities, interviews, conferences and more",
+        videoTitle: "Sample Video",
+        watch: "Watch on YouTube",
+        back: "🔙 Back to Multimedia"
+      }
+    };
+
+    let currentLang = "fr";
+
+    function switchLang() {
+      currentLang = currentLang === "fr" ? "en" : "fr";
+      const t = translations[currentLang];
+      document.getElementById("title").textContent = t.title;
+      document.getElementById("subtitle").textContent = t.subtitle;
+      document.getElementById("video-title").textContent = t.videoTitle;
+      document.getElementById("watch").textContent = t.watch;
+      document.getElementById("back").textContent = t.back;
+      document.getElementById("lang-label").textContent = currentLang === "fr" ? "EN" : "FR";
+    }
+  </script>
+
+</body>
+</html>

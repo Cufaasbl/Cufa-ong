@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails des Événements - CUFA ONG</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-image: url('fong evenement.jpg.jpg'); /* Ton image ici */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+    :root {
+      --main-color: #f4b400;
+      --text-color: #222;
+      --bg-color: #fff8dc;
+      --accent-color: #333;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: var(--main-color);
+      color: var(--text-color);
+      padding: 40px 20px;
+      text-align: center;
+      animation: slideDown 1s ease-in-out;
+      position: relative;
+    }
+
+    .lang-switch {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+
+    .lang-switch button {
+      background: #fff;
+      color: var(--text-color);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 40px 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    main.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #444;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+
+    .back {
+      display: block;
+      margin: 40px auto 0;
+      text-align: center;
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+      transform: scale(1.05);
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      main {
+        padding: 20px;
+      }
+
+      .lang-switch button {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="lang-switch">
+      <button onclick="switchLang()">🌐 <span id="lang-btn">EN</span></button>
+    </div>
+    <h1 id="header-title">LOGO- CUFA ONG</h1>
+  </header>
+
+  <main id="main-content">
+    <h2 id="section-title">LOGO-CUFA</h2>
+
+    <p id="p1">
+En vue de créer l'autonomie des peuples 
+à se prendreNotre logo traduit notre 
+aspiration profonde en charge. Car pour nous l'autonomisation des personnes c'est transformer toute la communauté.
+D'où ces 4 piliers Unité-Justice- Travail-Progrès »
+Symbolisent le cadre d'inspiration de notre engagement. de réussite face aux grands défis et enjeux du millénaire. 
+II présente l'image d'une étoile jaune symbole de l'espoir et de la réussite, surplombant une autre figure étoilée au centre de l'Afrique, 
+formée par trois têtes d'individus disparates selon leurs couleurs propres (le rouge, le bleu, et le jaune) qui démontre l'engagement de tous,
+ à se mobiliser pour l'intérêt de tous.
+
+</p>    <p id="p2">
+    
+    </p>
+
+    <p id="p3">
+    <strong></strong>.
+    </p>
+
+    <a href="index.html" class="back" id="back-link">← Retour à la page D'ACCUEIL</a>
+  </main>
+
+  <script>
+    // Langue dynamique
+    const translations = {
+      fr: {
+        header: "LOGO- CUFA ONG",
+        title: "LOGO",
+        p1: "en vue de créer l'autonomie des peuples à se prendre, Notre logo traduit notre aspiration profonde.en charge. Car pour nous l'autonomisation des personnes c'est transformer toute la communauté D'où ces 4 piliers Unité-Justice- Travail-Progrès » ",
+        p2: "Symbolisent le cadre d'inspiration de notre engagement. de réussite face aux grands défis et enjeux du millénaire II présente l'image d'une étoile jaune symbole de l'espoir et de la réussite  surplombant une autre figure étoilée au centre de l'Afrique,",
+        p3: "formée par trois têtes d'individus disparates selon leurs couleurs propres (le rouge, le bleu, et le jaune) qui démontre l'engagement de tous, à se mobiliser pour l'intérêt de tous.",
+        back: "← Retour à la page D'ACCUEIL",
+        btn: "EN"
+      },
+      en: {
+        header: "LOGO - CUFA NGO",
+        title: "LOGO CUFA ",
+        p1: "With the aim of creating the autonomy of peoples to take charge of themselves, our logo reflects our deep aspiration. For us, empowerment means transforming the entire community. Hence, these four pillars: Unity - Justice - Work - Progress.",
+        p2: "They symbolize the framework of inspiration for our commitment to success in the face of the great challenges and issues of the millennium. It presents the image of a yellow star, a symbol of hope and success, overlooking another star-shaped figure at the center of Africa.",
+        p3: "Formed by three heads of disparate individuals according to their own colors (red, blue, and yellow), which demonstrates the commitment of all to mobilize for the benefit of everyone.",
+        back: "← Back to ACCUEIL Page",
+        btn: "FR"
+      }
+    };
+
+    let lang = 'fr';
+
+    function switchLang() {
+      lang = lang === 'fr' ? 'en' : 'fr';
+      const t = translations[lang];
+      document.getElementById('header-title').textContent = t.header;
+      document.getElementById('section-title').textContent = t.title;
+      document.getElementById('p1').textContent = t.p1;
+      document.getElementById('p2').textContent = t.p2;
+      document.getElementById('p3').textContent = t.p3;
+      document.getElementById('back-link').textContent = t.back;
+      document.getElementById('lang-btn').textContent = t.btn;
+    }
+
+    // Animation à l’apparition (scroll)
+    const mainContent = document.getElementById('main-content');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    observer.observe(mainContent);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Événements - CUFA ONG</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('fond media.jpg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header {
+      text-align: center;
+      background-color: rgba(244, 180, 0, 0.9);
+      color: #222;
+      padding: 30px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+      transition: transform 0.3s ease, color 0.3s ease;
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      color: #f4b400;
+      transform: scale(1.1);
+    }
+
+    section {
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    section:nth-of-type(1) {
+      animation-delay: 0.3s;
+    }
+    section:nth-of-type(2) {
+      animation-delay: 0.6s;
+    }
+    section:nth-of-type(3) {
+      animation-delay: 0.9s;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      transition: color 0.3s ease;
+    }
+
+    section h2:hover {
+      color: #f4b400;
+    }
+
+    .btn-link {
+      display: inline-block;
+      background-color: #f4b400;
+      color: #222;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-link:hover {
+      background-color: #e09e00;
+      transform: scale(1.05);
+    }
+
+    .section-content {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Page Multimédia - CUFA ONG</h1>
+    <p>Événements, Images & Vidéos</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="evenement.html">Événements</a>
+    <a href="image.html">Images</a>
+    <a href="videos.html">Vidéos</a>
+  </nav>
+
+  <section id="evenements"> 
+    <h2>Événements</h2>
+    <div class="section-content">
+      <a href="evenement.html" class="btn-link">Voir les événements à venir</a>
+    </div>
+  </section>
+
+  <section id="images">
+    <h2>Images</h2>
+    <div class="section-content">
+      <a href="image.html" class="btn-link">Voir la galerie d’images</a>
+    </div>
+  </section>
+
+  <section id="videos">
+    <h2>Vidéos</h2>
+    <div class="section-content">
+      <a href="videos.html" class="btn-link">Voir les vidéos</a>
+    </div>
+  </section>
+
+</body>
+</html>

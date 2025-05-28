@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONG - Section Interactive</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .animate {
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .top-bar img { height: 50px; }
+
+    .social-links a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+      color: #f4b400;
+    }
+
+    .menu-toggle {
+      position: absolute;
+      top: 60px;
+      left: 100px;
+      background-color: #fcd34d;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover { transform: scale(1.05); }
+    .menu-toggle i { font-size: 20px; }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #fff8dc;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+      transition: left 0.5s ease;
+      padding-top: 100px;
+      z-index: 19;
+    }
+
+    .side-menu a {
+      display: block;
+      padding: 15px 20px;
+      color: #222;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.3s;
+    }
+
+    .side-menu a:hover {
+      background-color: #f4b400;
+      color: black;
+    }
+
+    .footer-section {
+      margin-top: auto;
+      background: #222;
+      color: white;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      animation: fadeIn 2s ease;
+    }
+
+    .ong-left {
+      flex: 1;
+      min-width: 150px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #25d366;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .circle-links {
+      flex: 3;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .circle-links a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #25d366;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      transition: transform 0.3s ease, background 0.3s ease;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+      animation: slideUp 1s ease;
+    }
+
+    .circle-links a:hover {
+      transform: scale(1.1);
+      background-color: #128c7e;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .modal-content iframe {
+      border: none;
+      width: 100%;
+      height: 500px;
+    }
+
+    .close-modal {
+      margin-top: 20px;
+      display: block;
+      color: #555;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    header {
+      background-image: url('fond.jpg.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 200px 20px 100px;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation-delay: 0.3s;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      animation-delay: 0.6s;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .buttons a {
+      padding: 10px 20px;
+      border: 2px solid rgb(12, 12, 12);
+      color: rgb(15, 14, 14);
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+      animation-delay: 0.9s;
+    }
+
+    .buttons a:hover {
+      background-color: white;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .btn-login {
+      padding: 10px 20px;
+      border: 2px solid #25d366;
+      background-color: #25d366;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      animation-delay: 1.2s;
+      display: inline-block;
+      text-decoration: none;
+      display: none;
+    }
+
+    .btn-login.visible {
+      display: inline-block;
+    }
+
+    .services {
+      background-color: #f4b400;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .services h2 {
+      color: rgb(24, 23, 23);
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      width: 250px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h3 { margin: 10px 0; }
+    .card p { font-size: 0.9em; color: #191818; }
+
+    /* === Classes pour modification de couleur du texte === */
+    .texte-modifiable {
+      color: #380cc675; /* Par défaut blanc */
+    }
+
+    .texte-rouge {
+      color: red;
+    }
+
+    .texte-bleu {
+      color: blue;
+    }
+
+    .texte-vert {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <img src="Logo.jpg.jpg" alt="Logo ONG CUFA" />
+    <div class="social-links">
+      <a href="https://www.facebook.com/profile.php?id=61574142767928" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/cufa_ong" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:cufa73894@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/+243819251001" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i> MENU
+  </div>
+
+  <div class="side-menu" id="sideMenu">
+    <a href="#accueil">Accueil</a>
+    <a href="media.html">Événements</a>
+    <a href="media.html">Images</a>
+    <a href="media.html">Vidéos</a>
+  </div>
+
+  <header id="accueil" class="texte-modifiable">
+    <h1 class="animate">CUFA ASBL ONG</h1>
+    <p class="animate">Congo united for AFRICA/ONG CUFA En sigle<br>est une association sans but lucratif<br>qui prône l'unisson pour Afrique en paix</h1>
+    <div class="buttons">
+      <a href="don.html" class="animate">FAIT UN DON MAINTENANT</a>
+      <a href="admi.html" class="btn-login animate" id="adminBtn">Se connecter</a>
+    </div>
+  </header>
+
+  <section class="services" id="presentation">
+    <h2 class="animate">UNITE POUR LE PROGRE</h2>
+    <div class="cards">
+
+      
+  
+    </div>
+  </section>
+
+  <div class="footer-section">
+    <div class="animate">Infos sur l'ONG<br>Contack:+243819251001<br>Adresse:Av.ELILA,N°900<br>C/Lemba TEMINUS Ville KINSHASA</div>
+    <div class="circle-links">
+      <a href="presentation.html">Présentation</a>
+      <a href="valeurs.html">Valeurs</a>
+      <a href="objectifs.html">Objectifs</a>
+      <a href="devises.html">Devises</a>
+      <a href="logo.html">Logo & Emblèmes</a>
+      <a href="#" onclick="openModal()">Newsletter</a>
+    </div>
+  </div>
+
+  <div class="modal" id="newsletterModal">
+    <div class="modal-content">
+      <h2>Formulaire Newsletter</h2>
+      <iframe src="https://forms.gle/iqVH769xV556qrhJ7">Chargement…</iframe>
+      <span class="close-modal" onclick="closeModal()">Fermer</span>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sideMenu = document.getElementById("sideMenu");
+      sideMenu.style.left = sideMenu.style.left === "0px" ? "-250px" : "0px";
+    }
+
+    function openModal() {
+      document.getElementById('newsletterModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('newsletterModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('newsletterModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = "0s";
+          entry.target.classList.add("animate");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate').forEach(el => {
+      observer.observe(el);
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.ctrlKey && event.altKey && event.key === "a") {
+        const adminBtn = document.getElementById("adminBtn");
+        adminBtn.classList.add("visible");
+      }
+    });
+  </script>
+</body>
+</html>

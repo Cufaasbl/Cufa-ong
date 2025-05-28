@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration - Mon Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: url('fong evenement.jpg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #003366;
+            position: relative;
+        }
+
+        header h2 {
+            font-size: 2.5em;
+            margin: 0;
+            display: inline-block;
+        }
+
+        .retour-btn {
+            font-size: 0.9em;
+            color: white;
+            background-color: #003366;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 20px;
+            vertical-align: middle;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .retour-btn:hover {
+            background-color: #0059b3;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        main:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            text-align: center;
+            color: #004080;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        a.button {
+            display: block;
+            background-color: #004080;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #0066cc;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #ddd;
+            margin-top: 40px;
+            border-top: 2px solid #bbb;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            margin: 100px auto;
+            transition: transform 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: scale(1.05);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            color: #004080;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #004080;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0059b3;
+            transform: translateY(-3px);
+        }
+
+        #contentSection {
+            margin-top: 30px;
+            border-top: 2px solid #f0f0f0;
+            padding-top: 20px;
+        }
+
+        .photo-list img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-list button {
+            background-color: #e74c3c;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: rgb(24, 165, 130);
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .photo-list button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Page de connexion -->
+<div id="loginPage">
+    <div class="login-container">
+        <h2>Connexion Administrateur</h2>
+        <form id="loginForm">
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+            
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+</div>
+
+<!-- Tableau de bord -->
+<div id="dashboardPage" style="display: none;">
+    <header>
+        <h2>Panneau d'administration - Tableau de bord</h2>
+        <a href="index.html" class="retour-btn">← Accueil</a>
+        <p>Gérez votre site depuis ce tableau de bord</p>
+    </header>
+
+    <main>
+        <h1>Gestion du contenu</h1>
+        <div class="section">
+            <a class="button" href="#" id="editTextButton">✏️ Modifier les textes de présentation</a>
+            <a class="button" href="#" id="managePhotosButton">📸 Ajouter/Supprimer des photos</a>
+            <a class="button" href="#" id="manageEventsButton">📅 Publier des événements</a>
+            <a class="button" href="#" id="deleteEventsButton">❌ Supprimer des événements passés</a>
+            <a class="button" href="#" id="manageBackgroundButton">🖼️ Changer l'image de fond</a>
+        </div>
+        <div id="contentSection" style="display:none;">
+            <h2 id="sectionTitle"></h2>
+            <div id="sectionContent"></div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 MonSite. Tous droits réservés.
+    </footer>
+</div>
+
+<script>
+    const adminUsername = 'admin';
+    const adminPassword = 'admin123';
+    let events = [];
+    let photos = [];
+
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === adminUsername && password === adminPassword) {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboardPage').style.display = 'block';
+        } else {
+            alert('Identifiants incorrects.');
+        }
+    });
+
+    document.getElementById('editTextButton').addEventListener('click', function () {
+        document.getElementById('sectionTitle').textContent = 'Modifier les textes de présentation';
+        document.getElementById('sectionContent').innerHTML = `
+            <textarea id="presentationText" rows="5" style="width:100%;">Entrez le texte ici...</textarea>
+            <button onclick="saveText()">Enregistrer</button>
+        `;
+        document.getElementById('contentSection').style.display = 'block';
+    });
+
+    function saveText() {
+        const newText = document.getElementById('presentationText').value;
+        alert('Texte sauvegardé : ' + newText);
+        document.getElementById('contentSection').style.display = 'none';
+    }
+
+    document.getElementById('managePhotosButton').addEventListener('click', function () {
+        document.getElementById('sectionTitle').textContent = 'Ajouter/Supprimer des photos';
+        document.getElementById('sectionContent').innerHTML = `
+            <input type="file" id="photoInput" />
+            <button onclick="addPhoto()">Ajouter une photo</button>
+            <ul id="photoList" class="photo-list"></ul>
+        `;
+        displayPhotos();
+        document.getElementById('contentSection').style.display = 'block';
+    });
+
+    function addPhoto() {
+        const file = document.getElementById('photoInput').files[0];
+        if (file) {
+            photos.push(URL.createObjectURL(file));
+            displayPhotos();
+        }
+    }
+
+    function displayPhotos() {
+        const photoList = document.getElementById('photoList');
+        photoList.innerHTML = '';
+        photos.forEach((photo, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<img src="${photo}" alt="Photo" /> <button onclick="removePhoto(${index})">Supprimer</button>`;
+            photoList.appendChild(li);
+        });
+    }
+
+    function removePhoto(index) {
+        photos.splice(index, 1);
+        displayPhotos();
+    }
+
+    document.getElementById('manageEventsButton').addEventListener('click', function () {
+        document.getElementById('sectionTitle').textContent = 'Publier des événements';
+        document.getElementById('sectionContent').innerHTML = `
+            <input type="text" id="eventTitle" placeholder="Titre de l'événement" />
+            <textarea id="eventDescription" rows="4" placeholder="Description de l'événement"></textarea>
+            <button onclick="addEvent()">Publier l'événement</button>
+        `;
+        document.getElementById('contentSection').style.display = 'block';
+    });
+
+    function addEvent() {
+        const title = document.getElementById('eventTitle').value;
+        const description = document.getElementById('eventDescription').value;
+        events.push({ title, description });
+        alert('Événement publié');
+        document.getElementById('contentSection').style.display = 'none';
+    }
+
+    document.getElementById('deleteEventsButton').addEventListener('click', function () {
+        document.getElementById('sectionTitle').textContent = 'Supprimer des événements passés';
+        document.getElementById('sectionContent').innerHTML = `<ul id="eventList"></ul>`;
+        displayEvents();
+        document.getElementById('contentSection').style.display = 'block';
+    });
+
+    function displayEvents() {
+        const eventList = document.getElementById('eventList');
+        eventList.innerHTML = '';
+        events.forEach((event, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `${event.title} - ${event.description} <button onclick="deleteEvent(${index})">Supprimer</button>`;
+            eventList.appendChild(li);
+        });
+    }
+
+    function deleteEvent(index) {
+        events.splice(index, 1);
+        displayEvents();
+    }
+
+    document.getElementById('manageBackgroundButton').addEventListener('click', function () {
+        document.getElementById('sectionTitle').textContent = "Changer l'image de fond";
+        document.getElementById('sectionContent').innerHTML = `
+            <input type="file" id="backgroundInput" accept="image/*" />
+            <button onclick="changeBackground()">Appliquer l'image de fond</button>
+            <button onclick="removeBackground()">Supprimer l'image de fond</button>
+        `;
+        document.getElementById('contentSection').style.display = 'block';
+    });
+
+    function changeBackground() {
+        const file = document.getElementById('backgroundInput').files[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            document.body.style.backgroundImage = `url('${url}')`;
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundRepeat = 'no-repeat';
+            document.body.style.backgroundPosition = 'center center';
+            alert("Image de fond appliquée !");
+        } else {
+            alert("Veuillez choisir une image d'abord.");
+        }
+    }
+
+    function removeBackground() {
+        document.body.style.backgroundImage = '';
+        alert("Image de fond supprimée !");
+    }
+</script>
+
+</body>
+</html>
