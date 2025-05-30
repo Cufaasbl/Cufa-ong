@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vidéos - CUFA ONG</title>
   <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-image: url('fond video.jpg.jpg'); /* Ton image ici */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff8dc;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 20px;
+      background-image: url('fond video.jpg.jpg'); /* Ton image ici */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: #fff8dc;
       overflow-x: hidden;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header {
+      width: 100%;
+      max-width: 900px;
       text-align: center;
       background: linear-gradient(135deg, #f4b400, #ffdd57);
-      color: #222;
       padding: 40px 20px;
-      animation: fadeInDown 1s ease-in-out;
+      border-radius: 12px;
+      color: #222;
       position: relative;
+      animation: fadeInDown 1s ease-in-out;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     .lang-switch {
       position: absolute;
-      top: 10px;
+      top: 15px;
       right: 20px;
+      z-index: 10;
     }
 
     .lang-switch button {
@@ -47,6 +54,12 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .lang-switch button:hover {
+      background-color: #f4b400;
+      color: #fff;
     }
 
     @keyframes fadeInDown {
@@ -72,25 +85,36 @@
     }
 
     .video-container {
+      width: 100%;
       max-width: 800px;
-      margin: 50px auto;
+      margin: 50px auto 30px;
       padding: 30px;
       background-color: #fff;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       border-radius: 12px;
       animation: slideIn 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .video-container h2 {
       text-align: center;
       color: #333;
       margin-bottom: 20px;
+      font-size: 1.8rem;
     }
 
     .thumbnail {
       text-align: center;
       margin-bottom: 20px;
       transition: transform 0.3s ease;
+      width: 100%;
+      max-width: 400px;
+      cursor: pointer;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .thumbnail:hover {
@@ -99,17 +123,20 @@
 
     .thumbnail img {
       width: 100%;
-      max-width: 400px;
+      display: block;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .video-frame {
       position: relative;
-      padding-bottom: 56.25%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
       height: 0;
       overflow: hidden;
       border-radius: 10px;
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .video-frame iframe {
@@ -123,12 +150,16 @@
 
     .video-links {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
     .video-links a {
       display: inline-block;
-      margin: 10px;
       padding: 12px 24px;
       background-color: #f4b400;
       color: #222;
@@ -136,11 +167,73 @@
       border-radius: 6px;
       font-weight: bold;
       transition: all 0.3s ease;
+      font-size: 1rem;
+      user-select: none;
     }
 
-    .video-links a:hover {
+    .video-links a:hover,
+    .video-links a:focus {
       background-color: #d89e00;
       transform: scale(1.05);
+      outline: none;
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      body {
+        padding: 15px;
+      }
+      header {
+        padding: 30px 15px;
+      }
+      .video-container {
+        padding: 20px;
+        margin: 40px auto 20px;
+      }
+      .video-container h2 {
+        font-size: 1.5rem;
+      }
+      .video-links a {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      header {
+        padding: 25px 10px;
+      }
+      .lang-switch {
+        top: 10px;
+        right: 10px;
+      }
+      .lang-switch button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+      }
+      .video-container {
+        padding: 15px;
+        margin: 30px auto 15px;
+      }
+      .video-container h2 {
+        font-size: 1.3rem;
+      }
+      .thumbnail {
+        max-width: 100%;
+      }
+      .video-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .video-links a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+      }
     }
   </style>
 </head>
@@ -154,11 +247,11 @@
     <p id="subtitle">Activités, interviews, conférences et plus</p>
   </header>
 
-  <div class="video-container" id="video-section">
+  <div class="video-container" id="video-section" role="main" aria-label="Section vidéo">
     <h2 id="video-title">Exemple de Vidéo</h2>
 
-    <div class="thumbnail">
-      <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Miniature vidéo">
+    <div class="thumbnail" tabindex="0" aria-label="Miniature vidéo. Cliquer pour voir la vidéo.">
+      <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Miniature vidéo" />
     </div>
 
     <div class="video-frame">
@@ -166,7 +259,7 @@
     </div>
 
     <div class="video-links">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="watch">Voir sur YouTube</a>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="watch" rel="noopener noreferrer">Voir sur YouTube</a>
       <a href="media.html" id="back">🔙 Retour à Multimédia</a>
     </div>
   </div>
@@ -179,14 +272,16 @@
         subtitle: "Activités, interviews, conférences et plus",
         videoTitle: "Exemple de Vidéo",
         watch: "Voir sur YouTube",
-        back: "🔙 Retour à Multimédia"
+        back: "🔙 Retour à Multimédia",
+        langBtn: "EN"
       },
       en: {
         title: "Our Videos - CUFA NGO",
         subtitle: "Activities, interviews, conferences and more",
         videoTitle: "Sample Video",
         watch: "Watch on YouTube",
-        back: "🔙 Back to Multimedia"
+        back: "🔙 Back to Multimedia",
+        langBtn: "FR"
       }
     };
 
@@ -200,7 +295,7 @@
       document.getElementById("video-title").textContent = t.videoTitle;
       document.getElementById("watch").textContent = t.watch;
       document.getElementById("back").textContent = t.back;
-      document.getElementById("lang-label").textContent = currentLang === "fr" ? "EN" : "FR";
+      document.getElementById("lang-label").textContent = t.langBtn;
     }
   </script>
 
