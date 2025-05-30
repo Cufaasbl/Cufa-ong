@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Détails des Événements - CUFA ONG</title>
   <style>
-    body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-image: url('fong evenement.jpg.jpg'); /* Ton image ici */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
+    /* Variables globales */
     :root {
       --main-color: #f4b400;
       --text-color: #222;
       --bg-color: #fff8dc;
       --accent-color: #333;
+      --max-width: 900px;
+    }
+
+    /* Reset & body */
+    * {
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: var(--bg-color);
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      background-image: url('fong evenement.jpg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px; /* léger padding horizontal */
     }
 
+    /* Header */
     header {
       background-color: var(--main-color);
       color: var(--text-color);
-      padding: 40px 20px;
+      padding: 2.5rem 1rem;
+      width: 100%;
+      max-width: var(--max-width);
       text-align: center;
       animation: slideDown 1s ease-in-out;
       position: relative;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
+    /* Bouton changement langue */
     .lang-switch {
       position: absolute;
       top: 15px;
@@ -54,18 +68,27 @@
       border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
     }
 
+    .lang-switch button:hover {
+      background-color: #ddd;
+    }
+
+    /* Main content */
     main {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 40px 30px;
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 2.5rem auto 4rem;
+      background: rgba(255 255 255 / 0.95);
+      padding: 2.5rem 2rem;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
       border-radius: 12px;
       opacity: 0;
       transform: translateY(50px);
       transition: all 1s ease;
+      box-sizing: border-box;
     }
 
     main.visible {
@@ -76,23 +99,26 @@
     h2 {
       text-align: center;
       color: var(--accent-color);
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
     }
 
     p {
       color: #444;
-      line-height: 1.6;
-      margin-top: 20px;
+      margin-top: 1.25rem;
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
     }
 
     .back {
       display: block;
-      margin: 40px auto 0;
+      margin: 3rem auto 0;
       text-align: center;
       text-decoration: none;
       color: var(--main-color);
       font-weight: bold;
+      font-size: 1.1rem;
       transition: all 0.3s ease;
+      width: fit-content;
     }
 
     .back:hover {
@@ -100,6 +126,7 @@
       transform: scale(1.05);
     }
 
+    /* Animation header */
     @keyframes slideDown {
       from {
         opacity: 0;
@@ -111,20 +138,34 @@
       }
     }
 
-    @media screen and (max-width: 600px) {
-      main {
-        padding: 20px;
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      header {
+        padding: 2rem 1rem;
       }
-
+      main {
+        padding: 2rem 1.25rem;
+        margin: 2rem 0 3rem;
+      }
       .lang-switch button {
         padding: 6px 12px;
-        font-size: 14px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      main {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem 0 2.5rem;
+      }
+      .lang-switch button {
+        padding: 5px 10px;
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
     <div class="lang-switch">
       <button onclick="switchLang()">🌐 <span id="lang-btn">EN</span></button>
@@ -137,18 +178,13 @@
 
     <p id="p1">
       congo United for AFRICA/ONG, CUFA En sigle, est une association sans but lucratif qui prône l'unisson pour une Afrique en paix.
-Ainsi, dans le but de remplir un rôle social absolument fondamental en tant que courroie de transmission de valeurs de mutualité et de solidarité entre différents peuples, le CUFA/ONG fait de la lutte contre les injustices et les inégalités sociales de tout genre, causent de la pauvreté au sein de nos pays africains, son cheval de bataille.
-«Unité pour le progrès»
-
+      Ainsi, dans le but de remplir un rôle social absolument fondamental en tant que courroie de transmission de valeurs de mutualité et de solidarité entre différents peuples, le CUFA/ONG fait de la lutte contre les injustices et les inégalités sociales de tout genre, causent de la pauvreté au sein de nos pays africains, son cheval de bataille.
+      «Unité pour le progrès»
     </p>
 
-    <p id="p2">
-    
-    </p>
+    <p id="p2"></p>
 
-    <p id="p3">
-    <strong></strong>.
-    </p>
+    <p id="p3"><strong></strong>.</p>
 
     <a href="index.html" class="back" id="back-link">← Retour à la page D'ACCUEIL</a>
   </main>
@@ -157,20 +193,20 @@ Ainsi, dans le but de remplir un rôle social absolument fondamental en tant que
     // Langue dynamique
     const translations = {
       fr: {
-        header: "- CUFA ONG",
+        header: "PRESENTATION- CUFA ONG",
         title: "PRESENTATION",
-        p1: "congo United for AFRICA/ONG, CUFA En sigle, est une association sans but lucratif qui prône l'unisson pour une Afrique en paix..",
-        p2: "Ainsi, dans le but de remplir un rôle social absolument fondamental en tant que courroie de transmission de valeurs de mutualité et de solidarité entre différents peuples,.",
-        p3: "le CUFA/ONG fait de la lutte contre les injustices et les inégalités sociales de tout genre, causent de la pauvreté au sein de nos pays africains, son cheval de bataille.Unité pour le progrès.",
+        p1: "congo United for AFRICA/ONG, CUFA En sigle, est une association sans but lucratif qui prône l'unisson pour une Afrique en paix.",
+        p2: "Ainsi, dans le but de remplir un rôle social absolument fondamental en tant que courroie de transmission de valeurs de mutualité et de solidarité entre différents peuples.",
+        p3: "le CUFA/ONG fait de la lutte contre les injustices et les inégalités sociales de tout genre, causent de la pauvreté au sein de nos pays africains, son cheval de bataille. Unité pour le progrès.",
         back: "← Retour à la page D'ACCUEIL",
         btn: "EN"
       },
       en: {
         header: "CUFA NGO",
         title: "Presentation",
-        p1: "Congo United for AFRICA/NGO, abbreviated CUFA, is a non-profit organization that promotes unity for a peaceful Africa.",
-        p2: "Thus, with the aim of fulfilling a vital social role as a channel for transmitting values of mutual support and solidarity among different peoples.",
-        p3: "CUFA/NGO makes the fight against injustices and all forms of social inequality — which are causes of poverty in our African countries — its main priority. Unity for progress.",
+        p1: "Congo United for AFRICA/NGO, abbreviated CUFA, is a non-profit organization that promotes unity for a peaceful Africa.",
+        p2: "Thus, with the aim of fulfilling a vital social role as a channel for transmitting values of mutual support and solidarity among different peoples.",
+        p3: "CUFA/NGO makes the fight against injustices and all forms of social inequality — which are causes of poverty in our African countries — its main priority. Unity for progress.",
         back: "← Back to Multimedia Page",
         btn: "FR"
       }
@@ -204,6 +240,5 @@ Ainsi, dans le but de remplir un rôle social absolument fondamental en tant que
 
     observer.observe(mainContent);
   </script>
-
 </body>
 </html>
