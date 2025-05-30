@@ -1,21 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Détails des Événements - CUFA ONG</title>
   <style>
-    body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-image: url('fong evenement.jpg.jpg'); /* Ton image ici */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
     :root {
       --main-color: #f4b400;
       --text-color: #222;
@@ -25,10 +14,20 @@
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: var(--bg-color);
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      background-image: url('fong evenement.jpg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header {
@@ -38,12 +37,15 @@
       text-align: center;
       animation: slideDown 1s ease-in-out;
       position: relative;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .lang-switch {
       position: absolute;
       top: 15px;
       right: 20px;
+      z-index: 10;
     }
 
     .lang-switch button {
@@ -54,18 +56,27 @@
       border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .lang-switch button:hover {
+      background-color: #e6e6e6;
     }
 
     main {
       max-width: 900px;
-      margin: 40px auto;
-      background: #ffffff;
+      margin: 40px 20px;
+      background: #ffffffcc; /* un peu transparent pour fond visible */
       padding: 40px 30px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
       border-radius: 12px;
       opacity: 0;
       transform: translateY(50px);
       transition: all 1s ease;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 900px;
     }
 
     main.visible {
@@ -77,12 +88,14 @@
       text-align: center;
       color: var(--accent-color);
       margin-bottom: 20px;
+      font-size: 2rem;
     }
 
     p {
       color: #444;
       line-height: 1.6;
       margin-top: 20px;
+      font-size: 1.1rem;
     }
 
     .back {
@@ -93,6 +106,7 @@
       color: var(--main-color);
       font-weight: bold;
       transition: all 0.3s ease;
+      font-size: 1.1rem;
     }
 
     .back:hover {
@@ -111,14 +125,65 @@
       }
     }
 
-    @media screen and (max-width: 600px) {
-      main {
-        padding: 20px;
+    /* Responsive */
+
+    @media (max-width: 768px) {
+      header {
+        padding: 30px 15px;
+        font-size: 1.5rem;
       }
 
       .lang-switch button {
         padding: 6px 12px;
-        font-size: 14px;
+        font-size: 0.9rem;
+      }
+
+      main {
+        margin: 30px 15px;
+        padding: 30px 20px;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .back {
+        font-size: 1rem;
+        margin-top: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 20px 10px;
+        font-size: 1.25rem;
+      }
+
+      .lang-switch button {
+        padding: 5px 10px;
+        font-size: 0.85rem;
+      }
+
+      main {
+        margin: 20px 10px;
+        padding: 20px 15px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      .back {
+        font-size: 0.95rem;
+        margin-top: 25px;
       }
     }
   </style>
@@ -136,16 +201,14 @@
     <h2 id="section-title">DEVISES-CUFA</h2>
 
     <p id="p1">
-Notre idéale c'est l'Egalite de tous et pour tous sans exception. 
-Faudra-t-il pour cela briser les barrières locales et linguistiques pour construire des ponts 
-avec des idées cohérentes qui frisent le changement
-
-</p>    <p id="p2">
-    
+      Notre idéale c'est l'Egalite de tous et pour tous sans exception.
+    </p>
+    <p id="p2">
+      Faudra-t-il pour cela briser les barrières locales et linguistiques pour construire des ponts.
     </p>
 
     <p id="p3">
-    <strong></strong>.
+      avec des idées cohérentes qui frisent le changement.
     </p>
 
     <a href="index.html" class="back" id="back-link">← Retour à la page D'ACCUEIL</a>
@@ -157,19 +220,19 @@ avec des idées cohérentes qui frisent le changement
       fr: {
         header: "DEVISES- CUFA ONG",
         title: "DEVISES",
-        p1: "otre idéale c'est l'Egalite de tous et pour tous sans exception.",
+        p1: "Notre idéale c'est l'Egalite de tous et pour tous sans exception.",
         p2: "Faudra-t-il pour cela briser les barrières locales et linguistiques pour construire des ponts.",
-        p3: "avec des idées cohérentes qui frisent le changement.",
+        p3: "Avec des idées cohérentes qui frisent le changement.",
         back: "← Retour à la page D'ACCUEIL",
         btn: "EN"
       },
       en: {
-        header: " SLOGANS- CUFA NGO",
+        header: "SLOGANS - CUFA NGO",
         title: "SLOGANS",
-        p1: "Our ideal is equality for all and by all, without exception.",
-        p2: "It will be necessary to break down local and linguistic barriers in order to build bridges.",
-        p3: "With coherent ideas that verge on change.",
-        back: "← Back to Accueil",
+        p1: "Our ideal is equality for all and by all, without exception.",
+        p2: "It will be necessary to break down local and linguistic barriers in order to build bridges.",
+        p3: "With coherent ideas that verge on change.",
+        back: "← Back to Home",
         btn: "FR"
       }
     };
@@ -177,7 +240,7 @@ avec des idées cohérentes qui frisent le changement
     let lang = 'fr';
 
     function switchLang() {
-      lang = lang === 'fr' ? 'en' : 'fr';
+      lang = (lang === 'fr') ? 'en' : 'fr';
       const t = translations[lang];
       document.getElementById('header-title').textContent = t.header;
       document.getElementById('section-title').textContent = t.title;
@@ -188,12 +251,13 @@ avec des idées cohérentes qui frisent le changement
       document.getElementById('lang-btn').textContent = t.btn;
     }
 
-    // Animation à l’apparition (scroll)
+    // Animation apparition
     const mainContent = document.getElementById('main-content');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
     }, {
