@@ -3,182 +3,290 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inscription à la Newsletter - Mon Site</title>
+  <title>Détails des Événements - CUFA ONG</title>
   <style>
     /* Reset minimal */
     *, *::before, *::after {
       box-sizing: border-box;
     }
 
+    :root {
+      --main-color: #f4b400;
+      --text-color: #222;
+      --bg-color: #fff8dc;
+      --accent-color: #333;
+    }
+
     body {
-      font-family: 'Arial', sans-serif;
-      background: #f0f4f8;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
+      overflow-x: hidden;
+      background-image: url('fong evenement.jpg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      /* overlay pour lisibilité */
+      position: relative;
       min-height: 100vh;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      color: var(--text-color);
     }
-    .newsletter-container {
-      background: white;
-      padding: 40px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
+
+    /* Ajout d'un overlay sombre pour améliorer contraste sur fond image */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      background-color: var(--main-color);
+      color: var(--text-color);
+      padding: 40px 20px;
       text-align: center;
-      transition: box-shadow 0.3s ease;
+      animation: slideDown 1s ease-in-out;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .newsletter-container:focus-within {
-      box-shadow: 0 0 25px rgba(0,64,128,0.5);
+
+    .lang-switch {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    .lang-switch button {
+      background: #fff;
+      color: var(--text-color);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .lang-switch button:hover,
+    .lang-switch button:focus {
+      background-color: #f0d14a;
       outline: none;
     }
-    h1 {
-      color: #004080;
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffffcc; /* blanc semi-transparent pour fond */
+      padding: 40px 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+      position: relative;
+      z-index: 1;
+      color: var(--accent-color);
+    }
+
+    main.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--accent-color);
       margin-bottom: 20px;
-      font-size: 1.8rem;
+      font-size: 2rem;
       line-height: 1.2;
     }
+
     p {
-      color: #555;
-      margin-bottom: 30px;
-      font-size: 1rem;
-    }
-    input[type="text"],
-    input[type="email"] {
-      width: 100%;
-      padding: 12px 15px;
-      margin: 10px 0 20px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1em;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
-    input[type="text"]:focus,
-    input[type="email"]:focus {
-      border-color: #004080;
-      outline: none;
-      box-shadow: 0 0 5px rgba(0,64,128,0.5);
-    }
-    button {
-      background-color: #004080;
-      color: white;
-      border: none;
-      padding: 14px 25px;
-      font-size: 1em;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-    }
-    button:hover,
-    button:focus {
-      background-color: #0059b3;
-      outline: none;
-    }
-    .message {
+      color: #444;
+      line-height: 1.6;
       margin-top: 20px;
-      font-weight: bold;
-      color: green;
-      min-height: 1.2em;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
-    .error {
-      color: red;
+
+    .back {
+      display: inline-block;
+      margin: 40px auto 0;
+      text-align: center;
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: bold;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+    }
+
+    .back:hover,
+    .back:focus {
+      text-decoration: none;
+      border-color: var(--main-color);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Responsive */
-    @media (max-width: 480px) {
-      .newsletter-container {
+
+    @media (max-width: 900px) {
+      main {
+        margin: 30px 20px;
         padding: 30px 20px;
       }
-      h1 {
-        font-size: 1.5rem;
+      h2 {
+        font-size: 1.7rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .back {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 30px 15px;
+      }
+      .lang-switch button {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+      main {
+        margin: 20px 10px;
+        padding: 20px 15px;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+      .back {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      header {
+        padding: 25px 10px;
+      }
+      .lang-switch button {
+        padding: 5px 10px;
+        font-size: 13px;
+      }
+      main {
+        padding: 15px 10px;
+      }
+      h2 {
+        font-size: 1.2rem;
       }
       p {
         font-size: 0.9rem;
       }
-      input[type="text"],
-      input[type="email"] {
-        padding: 10px 12px;
+      .back {
         font-size: 0.9rem;
-      }
-      button {
-        padding: 12px 20px;
-        font-size: 0.95rem;
       }
     }
   </style>
 </head>
 <body>
 
-<div class="newsletter-container" role="region" aria-labelledby="newsletter-title">
-  <h1 id="newsletter-title">Inscrivez-vous à notre Newsletter</h1>
-  <p>Recevez les dernières nouvelles et offres directement dans votre boîte mail.</p>
-  <form id="newsletterForm" novalidate>
-    <input type="text" id="firstName" name="firstName" placeholder="Votre prénom" required aria-required="true" aria-describedby="firstNameError" />
-    <input type="email" id="email" name="email" placeholder="Votre adresse email" required aria-required="true" aria-describedby="emailError" />
-    <button type="submit">S'inscrire</button>
-  </form>
-  <div id="message" class="message" aria-live="polite" role="alert"></div>
-</div>
+  <header>
+    <div class="lang-switch">
+      <button onclick="switchLang()" aria-label="Changer la langue">🌐 <span id="lang-btn">EN</span></button>
+    </div>
+    <h1 id="header-title">OBJECTIFS- CUFA ONG</h1>
+  </header>
 
-<script>
-  const form = document.getElementById('newsletterForm');
-  const messageDiv = document.getElementById('message');
+  <main id="main-content" tabindex="-1">
+    <h2 id="section-title">OBJECTIFS-CUFA</h2>
 
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
+    <p id="p1">
+      Avec les atouts précités ci-haut, le CUFA vise à mettre sur pied un espace élaboré pour inspirer,
+    </p>
+    <p id="p2">
+      informer, éduquer et connecter les jeunes africains engagés dans la réussite personnelle et le développement communautaire.
+    </p>
+    <p id="p3">
+      Mais aussi, nos actions d'aide et de soutien aux personnes vulnérables et pauvres par des projets concrets, constituent autant de domaine où l'on a un rôle important à jouer, complémentaire à l'action des gouvernements et de grandes agences multinationales.
+    </p>
 
-    const firstNameInput = document.getElementById('firstName');
-    const emailInput = document.getElementById('email');
+    <a href="index.html" class="back" id="back-link">← Retour à la page D'ACCUEIL</a>
+  </main>
 
-    const firstName = firstNameInput.value.trim();
-    const email = emailInput.value.trim();
+  <script>
+    // Langue dynamique
+    const translations = {
+      fr: {
+        header: "OBJECTIFS- CUFA ONG",
+        title: "OBJECTIFS-CUFA",
+        p1: "Avec les atouts précités ci-haut, le CUFA vise à mettre sur pied un espace élaboré pour inspirer,",
+        p2: "informer, éduquer et connecter les jeunes africains engagés dans la réussite personnelle et le développement communautaire.",
+        p3: "Mais aussi, nos actions d'aide et de soutien aux personnes vulnérables et pauvres par des projets concrets, constituent autant de domaine où l'on a un rôle important à jouer, complémentaire à l'action des gouvernements et de grandes agences multinationales.",
+        back: "← Retour à la page D'ACCUEIL",
+        btn: "EN"
+      },
+      en: {
+        header: "OBJECTIVES - CUFA NGO",
+        title: "OBJECTIVES - CUFA",
+        p1: "With the above-mentioned strengths, CUFA aims to establish a well-developed space to inspire,",
+        p2: "to inform, educate, and connect young Africans committed to personal success and community development.",
+        p3: "Also, our efforts to assist and support vulnerable and poor individuals through concrete projects represent key areas where we have an important role to play, complementing the actions of governments and major multinational agencies.",
+        back: "← Back to Home",
+        btn: "FR"
+      }
+    };
 
-    // Reset previous messages and styles
-    messageDiv.textContent = '';
-    messageDiv.classList.remove('error');
-    firstNameInput.style.borderColor = '#ccc';
-    emailInput.style.borderColor = '#ccc';
+    let lang = 'fr';
 
-    // Validation
-    if (!firstName) {
-      messageDiv.textContent = "Merci de remplir votre prénom.";
-      messageDiv.classList.add('error');
-      firstNameInput.style.borderColor = 'red';
-      firstNameInput.focus();
-      return;
+    function switchLang() {
+      lang = lang === 'fr' ? 'en' : 'fr';
+      const t = translations[lang];
+      document.getElementById('header-title').textContent = t.header;
+      document.getElementById('section-title').textContent = t.title;
+      document.getElementById('p1').textContent = t.p1;
+      document.getElementById('p2').textContent = t.p2;
+      document.getElementById('p3').textContent = t.p3;
+      document.getElementById('back-link').textContent = t.back;
+      document.getElementById('lang-btn').textContent = t.btn;
+
+      // Focus main content for screen readers after lang switch
+      document.getElementById('main-content').focus();
     }
-    if (!email) {
-      messageDiv.textContent = "Merci de remplir votre adresse email.";
-      messageDiv.classList.add('error');
-      emailInput.style.borderColor = 'red';
-      emailInput.focus();
-      return;
-    }
-    if (!validateEmail(email)) {
-      messageDiv.textContent = "Adresse email invalide.";
-      messageDiv.classList.add('error');
-      emailInput.style.borderColor = 'red';
-      emailInput.focus();
-      return;
-    }
 
-    // Simule envoi vers serveur
-    messageDiv.classList.remove('error');
-    messageDiv.textContent = `Merci ${firstName}, votre inscription à la newsletter est confirmée !`;
-    form.reset();
-  });
+    // Animation à l’apparition (scroll)
+    const mainContent = document.getElementById('main-content');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
 
-  function validateEmail(email) {
-    // Validation simple email
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-</script>
+    observer.observe(mainContent);
+  </script>
 
 </body>
 </html>
