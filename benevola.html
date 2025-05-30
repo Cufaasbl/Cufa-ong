@@ -2,24 +2,30 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Devenir Bénévolat</title>
   <style>
-     body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-image: url('fond benevola.jpg.jpg'); /* Ton image ici */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-image: url('fond benevola.jpg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     header {
@@ -41,13 +47,6 @@
       animation: fadeInUp 1s ease forwards;
       transform: translateY(30px);
       opacity: 0;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
     }
 
     h2 {
@@ -118,6 +117,42 @@
     .home-link:hover {
       text-decoration: underline;
       color: #003366;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 2rem 1rem;
+        padding: 2rem;
+      }
+
+      header {
+        font-size: 24px;
+        padding: 1rem;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      button {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+      }
+
+      input, select {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 12px;
+      }
     }
   </style>
 </head>
