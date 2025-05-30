@@ -1,126 +1,183 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Inscription à la Newsletter - Mon Site</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #f0f4f8;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            min-height: 100vh;
-            justify-content: center;
-            align-items: center;
-        }
-        .newsletter-container {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-        }
-        h1 {
-            color: #004080;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #555;
-            margin-bottom: 30px;
-        }
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 12px 15px;
-            margin: 10px 0 20px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1em;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-        input[type="text"]:focus,
-        input[type="email"]:focus {
-            border-color: #004080;
-            outline: none;
-        }
-        button {
-            background-color: #004080;
-            color: white;
-            border: none;
-            padding: 14px 25px;
-            font-size: 1em;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #0059b3;
-        }
-        .message {
-            margin-top: 20px;
-            font-weight: bold;
-            color: green;
-        }
-        .error {
-            color: red;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inscription à la Newsletter - Mon Site</title>
+  <style>
+    /* Reset minimal */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .newsletter-container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+    }
+    .newsletter-container:focus-within {
+      box-shadow: 0 0 25px rgba(0,64,128,0.5);
+      outline: none;
+    }
+    h1 {
+      color: #004080;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      line-height: 1.2;
+    }
+    p {
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 1rem;
+    }
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+      border-color: #004080;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0,64,128,0.5);
+    }
+    button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button:hover,
+    button:focus {
+      background-color: #0059b3;
+      outline: none;
+    }
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+      min-height: 1.2em;
+      font-size: 1rem;
+    }
+    .error {
+      color: red;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .newsletter-container {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+      input[type="text"],
+      input[type="email"] {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+      button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="newsletter-container">
-    <h1>Inscrivez-vous à notre Newsletter</h1>
-    <p>Recevez les dernières nouvelles et offres directement dans votre boîte mail.</p>
-    <form id="newsletterForm">
-        <input type="text" id="firstName" placeholder="Votre prénom" required />
-        <input type="email" id="email" placeholder="Votre adresse email" required />
-        <button type="submit">S'inscrire</button>
-    </form>
-    <div id="message" class="message"></div>
+<div class="newsletter-container" role="region" aria-labelledby="newsletter-title">
+  <h1 id="newsletter-title">Inscrivez-vous à notre Newsletter</h1>
+  <p>Recevez les dernières nouvelles et offres directement dans votre boîte mail.</p>
+  <form id="newsletterForm" novalidate>
+    <input type="text" id="firstName" name="firstName" placeholder="Votre prénom" required aria-required="true" aria-describedby="firstNameError" />
+    <input type="email" id="email" name="email" placeholder="Votre adresse email" required aria-required="true" aria-describedby="emailError" />
+    <button type="submit">S'inscrire</button>
+  </form>
+  <div id="message" class="message" aria-live="polite" role="alert"></div>
 </div>
 
 <script>
-    const form = document.getElementById('newsletterForm');
-    const messageDiv = document.getElementById('message');
+  const form = document.getElementById('newsletterForm');
+  const messageDiv = document.getElementById('message');
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        const firstName = document.getElementById('firstName').value.trim();
-        const email = document.getElementById('email').value.trim();
+    const firstNameInput = document.getElementById('firstName');
+    const emailInput = document.getElementById('email');
 
-        // Simple validation
-        if (!firstName || !email) {
-            messageDiv.textContent = "Merci de remplir tous les champs.";
-            messageDiv.classList.add('error');
-            return;
-        }
+    const firstName = firstNameInput.value.trim();
+    const email = emailInput.value.trim();
 
-        if (!validateEmail(email)) {
-            messageDiv.textContent = "Adresse email invalide.";
-            messageDiv.classList.add('error');
-            return;
-        }
+    // Reset previous messages and styles
+    messageDiv.textContent = '';
+    messageDiv.classList.remove('error');
+    firstNameInput.style.borderColor = '#ccc';
+    emailInput.style.borderColor = '#ccc';
 
-        // Ici tu peux ajouter la logique pour envoyer ces infos à un serveur
-        // Par exemple via fetch() ou autre API
-
-        messageDiv.classList.remove('error');
-        messageDiv.textContent = `Merci ${firstName}, votre inscription à la newsletter est confirmée !`;
-
-        form.reset();
-    });
-
-    function validateEmail(email) {
-        // Validation simple email
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    // Validation
+    if (!firstName) {
+      messageDiv.textContent = "Merci de remplir votre prénom.";
+      messageDiv.classList.add('error');
+      firstNameInput.style.borderColor = 'red';
+      firstNameInput.focus();
+      return;
     }
+    if (!email) {
+      messageDiv.textContent = "Merci de remplir votre adresse email.";
+      messageDiv.classList.add('error');
+      emailInput.style.borderColor = 'red';
+      emailInput.focus();
+      return;
+    }
+    if (!validateEmail(email)) {
+      messageDiv.textContent = "Adresse email invalide.";
+      messageDiv.classList.add('error');
+      emailInput.style.borderColor = 'red';
+      emailInput.focus();
+      return;
+    }
+
+    // Simule envoi vers serveur
+    messageDiv.classList.remove('error');
+    messageDiv.textContent = `Merci ${firstName}, votre inscription à la newsletter est confirmée !`;
+    form.reset();
+  });
+
+  function validateEmail(email) {
+    // Validation simple email
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
 </script>
 
 </body>
