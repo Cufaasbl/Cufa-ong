@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Faire un Don Maintenant</title>
   <style>
-     body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-image: url('fond don.jpg.jpg'); /* Ton image ici */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-image: url('fond don.jpg.jpg'); /* Ton image ici */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f0f8ff; /* fallback si image ne charge pas */
+      color: #222;
+    }
 
     @keyframes backgroundFade {
       0% { background-position: 0% 50%; }
@@ -28,18 +35,22 @@
       padding: 1.5rem;
       text-align: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .container {
       max-width: 700px;
-      background-color: white;
-      margin: 3rem auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      margin: 3rem 1rem;
       padding: 2.5rem;
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0, 128, 255, 0.2);
       animation: fadeIn 1.5s ease forwards;
       transform: translateY(30px);
       opacity: 0;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     @keyframes fadeIn {
@@ -53,6 +64,7 @@
       color: #007bff;
       text-align: center;
       margin-bottom: 2rem;
+      font-size: 2rem;
     }
 
     .don-info {
@@ -68,6 +80,7 @@
       border-left: 6px solid #00aaff;
       box-shadow: inset 0 0 10px rgba(0, 170, 255, 0.1);
       transition: transform 0.3s ease;
+      word-wrap: break-word;
     }
 
     .don-info p:hover {
@@ -88,11 +101,57 @@
       font-size: 18px;
       transition: background 0.3s ease, transform 0.3s ease;
       box-shadow: 0 8px 20px rgba(0, 128, 255, 0.3);
+      display: inline-block;
+      min-width: 180px;
     }
 
     .home-button a:hover {
       background: linear-gradient(to right, #005bbb, #00aaff);
       transform: scale(1.05);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 1.75rem;
+      }
+      .don-info p {
+        font-size: 16px;
+        padding: 0.8rem;
+      }
+      .container {
+        margin: 2rem 1rem;
+        padding: 2rem;
+      }
+      .home-button a {
+        font-size: 16px;
+        padding: 12px 24px;
+        min-width: 140px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem;
+        font-size: 1.2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .don-info p {
+        font-size: 15px;
+        padding: 0.7rem;
+      }
+      .container {
+        margin: 1.5rem 0.5rem;
+        padding: 1.5rem;
+      }
+      .home-button a {
+        font-size: 15px;
+        padding: 10px 20px;
+        min-width: 120px;
+      }
     }
   </style>
 </head>
