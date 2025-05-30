@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Détails des Événements - CUFA ONG</title>
   <style>
-    body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-image: url('fong evenement.jpg.jpg'); /* Ton image ici */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
+    /* Reset basique */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     :root {
       --main-color: #f4b400;
       --text-color: #222;
       --bg-color: #fff8dc;
       --accent-color: #333;
+      --max-width: 900px;
+      --padding-desktop: 40px 30px;
+      --padding-mobile: 20px 15px;
+      --border-radius: 12px;
     }
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: var(--bg-color);
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      background-image: url('fong evenement.jpg.jpg'); /* Image de fond */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
     }
 
     header {
@@ -38,12 +43,14 @@
       text-align: center;
       animation: slideDown 1s ease-in-out;
       position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     .lang-switch {
       position: absolute;
       top: 15px;
       right: 20px;
+      z-index: 10;
     }
 
     .lang-switch button {
@@ -54,15 +61,22 @@
       border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .lang-switch button:hover,
+    .lang-switch button:focus {
+      background-color: #eee;
+      outline: none;
     }
 
     main {
-      max-width: 900px;
+      max-width: var(--max-width);
       margin: 40px auto;
-      background: #ffffff;
-      padding: 40px 30px;
+      background: #ffffffcc; /* légère transparence pour voir image */
+      padding: var(--padding-desktop);
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      border-radius: 12px;
+      border-radius: var(--border-radius);
       opacity: 0;
       transform: translateY(50px);
       transition: all 1s ease;
@@ -77,12 +91,13 @@
       text-align: center;
       color: var(--accent-color);
       margin-bottom: 20px;
+      font-size: 2rem;
     }
 
     p {
-      color: #444;
-      line-height: 1.6;
       margin-top: 20px;
+      color: #444;
+      font-size: 1.1rem;
     }
 
     .back {
@@ -93,6 +108,8 @@
       color: var(--main-color);
       font-weight: bold;
       transition: all 0.3s ease;
+      font-size: 1.2rem;
+      max-width: 250px;
     }
 
     .back:hover {
@@ -111,51 +128,100 @@
       }
     }
 
-    @media screen and (max-width: 600px) {
+    /* Responsive */
+    @media (max-width: 900px) {
       main {
-        padding: 20px;
+        margin: 30px 20px;
+        padding: 30px 20px;
       }
+      h2 {
+        font-size: 1.75rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .back {
+        font-size: 1.1rem;
+      }
+    }
 
+    @media (max-width: 600px) {
+      header {
+        padding: 30px 15px;
+      }
       .lang-switch button {
         padding: 6px 12px;
         font-size: 14px;
+      }
+      main {
+        margin: 20px 15px;
+        padding: var(--padding-mobile);
+        border-radius: 8px;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+      .back {
+        font-size: 1rem;
+        max-width: 200px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      header {
+        padding: 25px 10px;
+      }
+      .lang-switch {
+        top: 10px;
+        right: 10px;
+      }
+      .lang-switch button {
+        padding: 5px 10px;
+        font-size: 13px;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+      .back {
+        font-size: 0.9rem;
+        max-width: 180px;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
     <div class="lang-switch">
       <button onclick="switchLang()">🌐 <span id="lang-btn">EN</span></button>
     </div>
-    <h1 id="header-title">VALEURS- CUFA ONG</h1>
+    <h1 id="header-title">VALEURS - CUFA ONG</h1>
   </header>
 
   <main id="main-content">
-    <h2 id="section-title">VALEUR-</h2>
+    <h2 id="section-title">VALEUR -</h2>
 
     <p id="p1">
       La vivacité, l'unité, l'esprit d'équipe et le dynamisme restent pour le CUFA, 
       la flamme qui permet de rêver qu'un autre monde est possible. En sorte qu'ensemble Nous puissions dire :
-       Debout pour une Afrique prospère.La vivacité, l'unité, l'esprit d'équipe et le dynamisme restent pour le CUFA, 
-       la flamme qui permet de rêver qu'un autre monde est possible. En sorte qu'ensemble Nous puissions dire : Debout pour une Afrique prospère.
-
+      Debout pour une Afrique prospère.La vivacité, l'unité, l'esprit d'équipe et le dynamisme restent pour le CUFA, 
+      la flamme qui permet de rêver qu'un autre monde est possible. En sorte qu'ensemble Nous puissions dire : Debout pour une Afrique prospère.
     </p>
 
-    <p id="p2">
-    
-    </p>
+    <p id="p2"></p>
 
-    <p id="p3">
-    <strong></strong>.
-    </p>
+    <p id="p3"><strong></strong>.</p>
 
     <a href="index.html" class="back" id="back-link">← Retour à la page D'ACCUEIL</a>
   </main>
 
   <script>
-    // Langue dynamique
+    // Traductions dynamique
     const translations = {
       fr: {
         header: "- CUFA ONG",
@@ -171,7 +237,7 @@
         title: "Upcoming or Ongoing",
         p1: "Vibrancy, unity, team spirit, and dynamism remain core values for CUFA.",
         p2: "The flame that keeps the dream of a better world alive. So that together we can say…",
-        p3: "Stand up for a prosperous Africa.  Vibrancy, unity, team spirit, and dynamism remain for CUFA the flame that keeps the dream of a better world alive. So that together we can say: Stand up for a prosperous Africa.",
+        p3: "Stand up for a prosperous Africa. Vibrancy, unity, team spirit, and dynamism remain for CUFA the flame that keeps the dream of a better world alive. So that together we can say: Stand up for a prosperous Africa.",
         back: "← Back to Multimedia Page",
         btn: "FR"
       }
@@ -191,7 +257,7 @@
       document.getElementById('lang-btn').textContent = t.btn;
     }
 
-    // Animation à l’apparition (scroll)
+    // Animation apparition au scroll
     const mainContent = document.getElementById('main-content');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -199,12 +265,9 @@
           entry.target.classList.add('visible');
         }
       });
-    }, {
-      threshold: 0.3
-    });
+    }, { threshold: 0.3 });
 
     observer.observe(mainContent);
   </script>
-
 </body>
 </html>
